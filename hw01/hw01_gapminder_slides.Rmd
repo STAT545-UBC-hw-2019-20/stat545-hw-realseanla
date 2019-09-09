@@ -1,0 +1,46 @@
+---
+title: "STAT 545 - Assignment 1.3"
+author: "Sean La"
+date: "09/09/2019"
+output:
+  ioslides_presentation
+---
+## Loading the dataset
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+First, we'll load the Gapminder datatset.
+
+```{r load_gapminder}
+library(gapminder)
+gapminder.df <- gapminder
+```
+
+## Simple summary statistics for life expectancy
+Let's look at the structure of the Gapminder dataset...
+
+\tiny
+```{r gapminder_structure, size="huge"}
+names(gapminder.df)
+```
+\normalsize
+There's a column called `lifeExp`, which stands for life expectancy. 
+
+---
+
+Let's find out what the mean and standard deviations for life expectancy are!
+
+```{r lifeExp_mean_sd}
+print(paste('The mean life expectancy is', mean(gapminder.df$lifeExp), '.'))
+print(paste('The standard deviation for life expectancy is', sd(gapminder.df$lifeExp), '.'))
+```
+
+## Histogram of life expectancies
+Let's make a histogram of the life expectancies to visualize the data better.
+
+```{r lifeExp_hist}
+hist(gapminder.df$lifeExp)
+```
