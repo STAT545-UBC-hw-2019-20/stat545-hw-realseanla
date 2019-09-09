@@ -3,7 +3,7 @@ title: "STAT 545 - Assignment 1.2"
 author: "Sean La"
 date: "09/09/2019"
 output:
-  pdf_document: default
+  github_document
 ---
 
 ```{r setup, include=FALSE}
