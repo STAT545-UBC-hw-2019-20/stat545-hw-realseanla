@@ -19,7 +19,7 @@ library(gapminder)
 gapminder.df <- gapminder
 ```
 
-## Simple summary statistics for life expectancy
+## Structure of data
 Let's look at the structure of the Gapminder dataset...
 
 \tiny
@@ -29,7 +29,7 @@ names(gapminder.df)
 \normalsize
 There's a column called `lifeExp`, which stands for life expectancy. 
 
----
+## Summary statistics of life expectancy
 
 Let's find out what the mean and standard deviations for life expectancy are!
 
