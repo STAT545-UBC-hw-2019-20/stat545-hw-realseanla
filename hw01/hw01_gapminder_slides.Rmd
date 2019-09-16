@@ -20,11 +20,11 @@ gapminder.df <- gapminder
 ```
 
 ## Structure of data
-Let's look at the structure of the Gapminder dataset...
+Let's look at some of the data columns...
 
 \tiny
-```{r gapminder_structure, size="huge"}
-names(gapminder.df)
+```{r gapminder_structure}
+names(gapminder.df)[1:4]
 ```
 \normalsize
 There's a column called `lifeExp`, which stands for life expectancy. 
@@ -34,8 +34,11 @@ There's a column called `lifeExp`, which stands for life expectancy.
 Let's find out what the mean and standard deviations for life expectancy are!
 
 ```{r lifeExp_mean_sd}
-print(paste('The mean life expectancy is', mean(gapminder.df$lifeExp), '.'))
-print(paste('The standard deviation for life expectancy is', sd(gapminder.df$lifeExp), '.'))
+life_exp_mean <- mean(gapminder.df$lifeExp)
+print(paste('Mean life expectancy is',life_exp_mean,'.'))
+life_exp_sd <- sd(gapminder.df$lifeExp)
+print(paste('Standard deviation for life expectancy is',
+            life_exp_sd,'.'))
 ```
 
 ## Histogram of life expectancies

@@ -3129,13 +3129,13 @@ gapminder.df &lt;- gapminder</pre>
 
 </article></slide><slide class=""><hgroup><h2>Structure of data</h2></hgroup><article  id="structure-of-data">
 
-<p>Let’s look at the structure of the Gapminder dataset…</p>
+<p>Let’s look at some of the data columns…</p>
 
 
 
-<pre class = 'prettyprint lang-r'>names(gapminder.df)</pre>
+<pre class = 'prettyprint lang-r'>names(gapminder.df)[1:4]</pre>
 
-<pre >## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;</pre>
+<pre >## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;</pre>
 
 
 
@@ -3145,13 +3145,16 @@ gapminder.df &lt;- gapminder</pre>
 
 <p>Let’s find out what the mean and standard deviations for life expectancy are!</p>
 
-<pre class = 'prettyprint lang-r'>print(paste(&#39;The mean life expectancy is&#39;, mean(gapminder.df$lifeExp), &#39;.&#39;))</pre>
+<pre class = 'prettyprint lang-r'>life_exp_mean &lt;- mean(gapminder.df$lifeExp)
+print(paste(&#39;Mean life expectancy is&#39;,life_exp_mean,&#39;.&#39;))</pre>
 
-<pre >## [1] &quot;The mean life expectancy is 59.4744393661972 .&quot;</pre>
+<pre >## [1] &quot;Mean life expectancy is 59.4744393661972 .&quot;</pre>
 
-<pre class = 'prettyprint lang-r'>print(paste(&#39;The standard deviation for life expectancy is&#39;, sd(gapminder.df$lifeExp), &#39;.&#39;))</pre>
+<pre class = 'prettyprint lang-r'>life_exp_sd &lt;- sd(gapminder.df$lifeExp)
+print(paste(&#39;Standard deviation for life expectancy is&#39;,
+            life_exp_sd,&#39;.&#39;))</pre>
 
-<pre >## [1] &quot;The standard deviation for life expectancy is 12.9171074152412 .&quot;</pre>
+<pre >## [1] &quot;Standard deviation for life expectancy is 12.9171074152412 .&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Histogram of life expectancies</h2></hgroup><article  id="histogram-of-life-expectancies">
 
