@@ -1,0 +1,72 @@
+---
+title: "STAT 545A - Assignment 3"
+author: "Sean La"
+date: "27/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(gapminder)
+library(tidyverse)
+library(ggridges)
+```
+
+# Task Option 2
+Let's get the maximum and minimum GDP per capita per for all continents.
+```{r}
+(gdpPercap_summary <- gapminder %>% 
+                      group_by(continent) %>% 
+                      summarize(Min_gdpPercap=min(gdpPercap),
+                                Max_gdpPercap=max(gdpPercap),
+                                Range_gdpPercap=Max_gdpPercap-Min_gdpPercap) %>% 
+                      DT::datatable()
+)
+```
+Asia has the country with the greatest GDP per capita, whereas Africa has the country with the lowest GDP per capita.
+Asia seems to have the greatest range between its lowest GDP per capita country and its highest.
+Let's visualize the minimum, maximum, and range of the GDP per capita for each continent.
+
+```{r}
+gapminder %>% 
+  ggplot(aes(continent,gdpPercap)) +
+  geom_boxplot(aes(group=continent)) +
+  xlab('Continent') +
+  ylab('GDP per capita')
+```
+
+# Task Option 3
+Let's visualize what the distribution of countries' GDP per capita for each continent is like.
+
+```{r}
+gapminder %>% 
+  ggplot(aes(gdpPercap,continent)) +
+  geom_density_ridges()
+```
+
+It seems that Oceania and Europe have the greatest GDP per capita distribution, which are both skewed to the right.
+
+# Task Option 4
+Let's find the mean life expectancy for each continent, for each year.
+We'll first group `gapminder` dataset by Continent and year, and find the mean and standard deviation of each continents life expectancy for each recorded year.
+```{r}
+(mean_lifeExp_per_year <- gapminder %>%
+                          group_by(continent,year) %>% 
+                          summarize(mean_lifeExp=mean(lifeExp),
+                                    sd_lifeExp=sd(lifeExp),
+                                    mean_plus_sd_lifeExp=mean_lifeExp + sd_lifeExp,
+                                    mean_minus_sd_lifeExp=mean_lifeExp - sd_lifeExp)
+)
+```
+
+Let's plot the life expectancies for each continent on the same plot.
+```{r}
+mean_lifeExp_per_year %>% 
+  ggplot(aes(year,mean_lifeExp,group=continent)) +
+  geom_line(aes(group=continent,colour=continent)) +
+  geom_ribbon(aes(ymin=mean_minus_sd_lifeExp,ymax=mean_plus_sd_lifeExp,fill=continent),alpha=0.2) +
+  xlab("Year") +
+  ylab("Life expectancy")
+```
+
+Judging from the above graph, it seems that Oceania has the highest life expectancy and lowest standard deviation, whereas Africa has the lowest mean life expectancy and (at least one of the largest) standard deviations.
