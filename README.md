@@ -8,6 +8,6 @@ My name is **Sean La**, and I am a first year graduate student in the Master of 
 Homework tasks list:
 * [x] Homework 1
 * [x] Homework 2
-* [ ] Homework 3
+* [x] Homework 3
 * [ ] Homework 4
 * [ ] Homework 5
