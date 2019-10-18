@@ -74,7 +74,7 @@ nlevels(gap_sans_oceania$continent)
 
 Now we only have four factors in `gapminder$continent`, which is what we want! Perfect.
 
-Let's look at barcharts of each continents population.
+Let's look at boxplots of each continents population.
 ```{r}
 gapminder %>% 
   ggplot(aes(continent, pop)) + 
@@ -103,12 +103,17 @@ Indeed, we have Africa first, then Oceania, then Americas, Europe, and then fina
 # Question 3
 Let's reorder the continents factor in `gapminder` using `forcats::fct_reorder` in descending order based on each continents' median life expectancy.
 
-This is what the structure of the `gapminder` dataset looks like before:
+Before we start, this is what the structure of the `gapminder` dataset looks like before:
 
 ```{r}
 str(gapminder)
 ```
 
+If we use `arrange` on the original `gapminder` dataset based on the `continent`, we get this.
+
+```{r}
+head(arrange(gapminder, continent))
+```
 This is what the corresponding frequency box plot looks like.
 
 ```{r}
@@ -127,6 +132,15 @@ str(shuffled_gap)
 ```
 
 Running `fct_reorder` on the `continent` factor based on each continents' median life expectancy in descending order reorders the continent names in the internal representation of the `gapminder` dataset.
+
+Let's run `arrange` on `shuffled_gap` based on `continent` to see how `fct_reorder` effects the results.
+
+```{r}
+head(arrange(shuffled_gap, continent))
+```
+
+Countries whose continent is Oceania comes up first.
+This is different from the original `gapminder` dataset, where running `arrange` displays countries whose continent is Africa first.
 
 The frequency boxplot after reordering looks like this.
 
@@ -160,7 +174,14 @@ str(shuffled_gap)
 
 Nope! R doesn't even recognize that `continent` is a factor variable now.
 
-Plotting the frequency box plot of our written-and-read `shuffled_gap` dataset looks like this.
+Running `arrange` on `continent` gives this.
+
+```{r}
+head(arrange(shuffled_gap, continent))
+```
+Running `arrange` gives the same as it was when we were working with the original `gapminder` dataset.
+
+Plotting the frequency box plot of our written-and-read `shuffled_gap` dataset gives this.
 
 ```{r}
 shuffled_gap %>%
